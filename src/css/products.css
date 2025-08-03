@@ -28,7 +28,8 @@
   margin-top: 80px;
   margin-right: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
   align-items: center;
   padding: 0 40px;
   flex-direction: row !important;
@@ -45,7 +46,6 @@
   text-align: center;
   flex: 1;
 }
-
 
 .products-page .products .single-search-big-box {
   position: relative;
@@ -388,8 +388,6 @@
   top: 26%;
   right: 15%;
 }
- 
-
 
 /** ChosenProduct **/
 
