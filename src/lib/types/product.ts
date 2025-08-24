@@ -23,3 +23,5 @@ export interface ProductInquiry {
   productCollection?: ProductCollection;
   search?: string;
 }
+
+export { ProductCollection };
