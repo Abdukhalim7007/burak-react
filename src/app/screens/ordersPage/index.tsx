@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState, SyntheticEvent } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
@@ -8,13 +8,14 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
-import "../../../css/orders.css";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
 import { Order, OrderInquiry } from "../../../lib/types/order";
 import { useDispatch } from "react-redux";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { Dispatch } from "@reduxjs/toolkit";
+import { useGlobals } from "../../hooks/useGlobals";
+import "../../../css/orders.css";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -26,7 +27,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
-
+  const { orderBuilder } = useGlobals();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
@@ -51,7 +52,7 @@ export default function OrdersPage() {
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, [orderInquiry]);
+  }, [orderInquiry, orderBuilder]);
 
   //** HANDLERS **/
   const handleChange = (e: SyntheticEvent, newValue: string) => {
@@ -79,10 +80,10 @@ export default function OrdersPage() {
             </Box>
             <Stack className={"order-main-content"}>
               <TabPanel value={"1"}>
-                <PausedOrders />
+                <PausedOrders setValue= {setValue}/>
               </TabPanel>
               <TabPanel value={"2"}>
-                <ProcessOrders />
+                <ProcessOrders setValue= {setValue} />
               </TabPanel>
               <TabPanel value={"3"}>
                 <FinishedOrders />
