@@ -10,7 +10,7 @@ export interface OrderItemInput {
 
 export interface OrderItem {
   _id: string;
-  itemQuatity: number; // screenshotdagi nomlash saqlandi
+  itemQuantity: number; // screenshotdagi nomlash saqlandi
   itemPrice: number;
   orderId: string;
   productId: string;

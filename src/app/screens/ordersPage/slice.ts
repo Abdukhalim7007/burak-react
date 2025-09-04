@@ -1,4 +1,4 @@
- import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { OrdersPageState } from "../../../lib/types/screen";
 
 const initialState: OrdersPageState = {
